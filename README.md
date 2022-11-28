@@ -136,3 +136,49 @@ if(Instance == null)
  return;
 }
 ```
+
+# Region을 사용한 코드 정리
+MonoBehaviour 오브젝트에는 매직 메서드들이 있습니다.
+OnEnable(),
+Awake(),
+Start(),
+Update(),
+FixedUpdate(),
+OnDisable(),
+OnDestroy(),
+등등이 있습니다.
+라이프 사이클에 관련된 메서드들은 #Region을 사용하여 코드 흐름을 파악하기 쉽게끔 함께 묶어주는 것이 좋습니다.
+다만 이런 흐름 정리에 관해서는 선호하는 방식이 다르므로 따로 정하는게 좋습니다.
+
+두가지 방식이 예상되는데, 유니티 매직 메서드들과 커스텀 스크립트를 따로 분류해서 정렬하거나, 라이프 사이클에 맞추어 유니티 매직 메서드를 첫번째로 시작하여 순서대로 정렬하는 방법이 있겠습니다.
+예시:
+```cs
+
+#Region Unity Methods
+
+Awake
+Start
+Update
+
+#EndRegion
+
+커스텀1
+커스텀2
+커스텀3
+```
+예시2:
+```cs
+#Region Initialization
+
+Awake
+커스텀_초기화
+커스텀_셋업
+
+#EndRegion
+
+Start
+커스텀_시작
+Update
+커스텀_업데이트
+```
+
